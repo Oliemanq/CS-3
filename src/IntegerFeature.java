@@ -2,7 +2,7 @@ import java.util.*;
 
 public class IntegerFeature extends Feature {
     private ArrayList<IntegerDataItem> dataItems = new ArrayList<>();
-    private ArrayList<Integer> values = new ArrayList<>();
+    private final ArrayList<Integer> values = new ArrayList<>();
 
     public IntegerFeature(String featureName, ArrayList<IntegerDataItem> values) {
         super(featureName, "Integer");
@@ -14,24 +14,44 @@ public class IntegerFeature extends Feature {
         this.dataItems = values;
     }
 
-    public int getMaxValue() {
-        return Collections.max(values);
-    }
+    public String getMaxValue() {
 
-    public int getMinValue() {
-        return Collections.min(values);
-    }
-
-    public ArrayList<Integer> getUniqueValues() {
-        ArrayList<Integer> uniqueValues = new ArrayList<>();
-
-        for (Integer value : values) {
-            if (!uniqueValues.contains(value)) {
-                uniqueValues.add(value);
+        int highestIndex = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i) > values.get(highestIndex)) {
+                highestIndex = i;
             }
         }
 
-        return uniqueValues;
+        return dataItems.get(highestIndex).showString();
+    }
+
+    public String getMinValue() {
+        int lowestIndex = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i) < values.get(lowestIndex)) {
+                lowestIndex = i;
+            }
+        }
+
+        return dataItems.get(lowestIndex).showString();
+    }
+
+    public String getUniqueValues() {
+        ArrayList<IntegerDataItem> uniqueValues = new ArrayList<>();
+
+        for (int i = 0; i < dataItems.size(); i++) {
+            if (!uniqueValues.contains(dataItems.get(i))) {
+                uniqueValues.add(dataItems.get(i));
+            }
+        }
+
+        StringBuilder result = new StringBuilder("[");
+        for (IntegerDataItem item : uniqueValues) {
+            result.append(item.showString()).append(", ");
+        }
+
+        return result.substring(0, result.length() - 2) + "]";
     }
 
     public void printInfo(){

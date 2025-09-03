@@ -16,8 +16,8 @@ public class DoubleFeature extends Feature {
 
     public double getMeanValue() {
         double sum = 0.0;
-        for (double value : values) {
-            sum += value;
+        for (DoubleDataItem value : DataItems) {
+            sum += value.value;
         }
         return sum / values.size();
     }
@@ -25,9 +25,9 @@ public class DoubleFeature extends Feature {
     public double getMedianValue() {
         int size = values.size();
         if (size % 2 == 0) {
-            return (values.get((size / 2) - 1) + values.get(size / 2)) / 2.0; //Getting average of two median values
+            return (DataItems.get((size / 2) - 1).value + (DataItems.get(size / 2)).value) / 2.0; //Getting average of two median values
         } else {
-            return values.get(size / 2); //returning median value
+            return DataItems.get(size / 2).value; //returning median value
         }
     }
 

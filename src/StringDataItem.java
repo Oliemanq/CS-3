@@ -10,17 +10,17 @@ public class StringDataItem extends DataItem{
     public String findType() {
         try {
             Integer.parseInt(value);
-            System.out.println("Parsed as Integer: - " + value);
+//            System.out.println("Parsed as Integer: - " + value);
             return "Integer";
 
         } catch (NumberFormatException e) {
             try {
                 Double.parseDouble(value);
-                System.out.println("Parsed as Double: -- " + value);
+//                System.out.println("Parsed as Double: -- " + value);
                 return "Double";
 
             } catch (NumberFormatException ex) {
-                System.out.println("Parsed as String: --- " + value);
+//                System.out.println("Parsed as String: --- " + value);
                 return "String";
             }
         }
