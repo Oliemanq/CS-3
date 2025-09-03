@@ -1,3 +1,3 @@
-This is a directory containing all of my work from Intro to Data Structures and Analytics.
+This is the excercise for Week 2 lab
 
-Each project/lab/in-class assignment is in its own branch on the repository.
+The program organizes CSV files based on the data type and contents into DataItems, which it uses to print out info
