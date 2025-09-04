@@ -14,23 +14,19 @@ public class Dataset {
 
     public void loadFromCSV() {
         try (CSVReader r = new CSVReader(new java.io.FileReader(this.filepath))) {
-            String[] row;
-            while ((row = r.readNext()) != null) {
+            String[] readRow;
+            while ((readRow = r.readNext()) != null) {
                 ArrayList<StringDataItem> dataRow = new ArrayList<>();
-                for (String item : row) {
+                for (String item : readRow) {
                     StringDataItem dataItem = new StringDataItem(item);
                     dataRow.add(dataItem);
                 }
                 data.add(dataRow);
             }
 
-            for (int i = 0; i <= data.size(); i++) {
-                for (ArrayList<StringDataItem> rowData : data) {
-                    columns.add(rowData.get(i));
-                }
-            }
-
-            for(int i = 0; i <= data.size(); i++) {
+            System.out.println("Column count: " + data.get(0).size());
+            System.out.println("Row count: " + data.size());
+            for(int i = 0; i < data.getFirst().size(); i++) {
                 loadFeatureForColumn(i);
             }
         } catch (Exception e) {

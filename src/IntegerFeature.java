@@ -38,17 +38,17 @@ public class IntegerFeature extends Feature {
     }
 
     public String getUniqueValues() {
-        ArrayList<IntegerDataItem> uniqueValues = new ArrayList<>();
+        ArrayList<Integer> uniqueValues = new ArrayList<>();
 
-        for (int i = 0; i < dataItems.size(); i++) {
-            if (!uniqueValues.contains(dataItems.get(i))) {
-                uniqueValues.add(dataItems.get(i));
+        for (IntegerDataItem dataItem : dataItems) {
+            if (!uniqueValues.contains(dataItem.value)) {
+                uniqueValues.add(dataItem.value);
             }
         }
 
         StringBuilder result = new StringBuilder("[");
-        for (IntegerDataItem item : uniqueValues) {
-            result.append(item.showString()).append(", ");
+        for (Integer item : uniqueValues) {
+            result.append(item).append(", ");
         }
 
         return result.substring(0, result.length() - 2) + "]";
